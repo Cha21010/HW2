@@ -246,10 +246,10 @@ class App extends React.Component {
         let transaction = new MoveSong_Transaction(this, start, end);
         this.tps.addTransaction(transaction);
     }
-    addAddSongTransaction = ()=>{
-        let transaction = new AddSong_Transaction(this);
-        this.tps.addTransaction(transaction);
-    }
+    // addAddSongTransaction = ()=>{
+    //     let transaction = new AddSong_Transaction(this);
+    //     this.tps.addTransaction(transaction);
+    // }
     addDeleteSongTransaction = () =>{
         let transaction  = new DeleteSong_Transaction(this,this.state.SongIndexMarkedForDeletion,this.state.currentList.songs[this.state.SongIndexMarkedForDeletion]);
         this.tps.addTransaction(transaction);
@@ -318,7 +318,7 @@ class App extends React.Component {
             sessionData: prevState.sessionData
         }), () => {
             // PROMPT THE USER
-            this.showDeleteSongModal();
+            // this.showDeleteSongModal();
         });
     }
     markListForDeletion = (keyPair) => {
@@ -368,15 +368,15 @@ class App extends React.Component {
         let modal = document.getElementById("edit-song-modal");
         modal.classList.remove("is-visible");
     }
-    showDeleteSongModal=()=> {
-        let modal = document.getElementById("delete-song-modal");
-        modal.classList.add("is-visible");
-    }
-    // THIS FUNCTION IS FOR HIDING THE MODAL
-    hideDeleteSongModal = ()=> {
-        let modal = document.getElementById("delete-song-modal");
-        modal.classList.remove("is-visible");
-    }
+    // showDeleteSongModal=()=> {
+    //     let modal = document.getElementById("delete-song-modal");
+    //     modal.classList.add("is-visible");
+    // }
+    // // THIS FUNCTION IS FOR HIDING THE MODAL
+    // hideDeleteSongModal = ()=> {
+    //     let modal = document.getElementById("delete-song-modal");
+    //     modal.classList.remove("is-visible");
+    // }
 
     keydownHandler = (event) => {
         if(event.keyCode === 90 && (event.ctrlKey||event.metaKey)){
@@ -404,11 +404,14 @@ class App extends React.Component {
         let canUndo = this.tps.hasTransactionToUndo();
         let canRedo = this.tps.hasTransactionToRedo();
         let canClose = this.state.currentList !== null;
+        let canAddlist = this.state.currentList !== null;
+        console.log(canAddlist)
         return (
             <div id="root" onKeyDown = {this.keydownHandler}>
                 <Banner />
                 <SidebarHeading
                     createNewListCallback={this.createNewList}
+                    canAddlist = {canAddlist}
                 />
                 <SidebarList
                     currentList={this.state.currentList}
@@ -425,7 +428,7 @@ class App extends React.Component {
                     undoCallback={this.undo}
                     redoCallback={this.redo}
                     closeCallback={this.closeCurrentList}
-                    addSongCallback = {this.addAddSongTransaction}
+                    // addSongCallback = {this.addAddSongTransaction}
                 />
                 <PlaylistCards
                     currentList={this.state.currentList}
@@ -441,11 +444,11 @@ class App extends React.Component {
                     deleteListCallback={this.deleteMarkedList}
                 
                 />
-                <DeleteSongModal
+                {/* <DeleteSongModal
                     hideDeleteSongModalCallback={this.hideDeleteSongModal}
                     SongNameMarkedForDeletion={this.state.SongNameMarkedForDeletion}
                     deleteSongCallback = {this.addDeleteSongTransaction}
-                />
+                /> */}
                 <EditSongModal
                 hideEditSongModalCallback = {this.hideEditSongModal}
                 editSongCallback = {this.addEditSongTransaction}
