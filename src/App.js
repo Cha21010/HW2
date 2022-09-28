@@ -4,7 +4,6 @@ import './App.css';
 // IMPORT DATA MANAGEMENT AND TRANSACTION STUFF
 import DBManager from './db/DBManager';
 import jsTPS from './common/jsTPS.js';
-////////
 // OUR TRANSACTIONS
 import MoveSong_Transaction from './transactions/MoveSong_Transaction.js';
 import AddSong_Transaction from './transactions/AddSong_Transaction.js';
@@ -258,9 +257,6 @@ class App extends React.Component {
     addEditSongTransaction = () =>{
         let index = this.state.SongIndexMarkedForEdition;
         let song = this.state.currentList.songs[index];
-        let previoustitle = song.title
-        let previousartist = song.artist
-        let previousyouTubeId  = song.youTubeId
         let newtitle = document.getElementById("edit-song-title").value;
         let newartist = document.getElementById("edit-song-artist").value; 
         let newyoutubeid = document.getElementById("edit-song-youTubeId").value;
