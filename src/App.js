@@ -318,7 +318,7 @@ class App extends React.Component {
             sessionData: prevState.sessionData
         }), () => {
             // PROMPT THE USER
-            // this.showDeleteSongModal();
+            this.showDeleteSongModal();
         });
     }
     markListForDeletion = (keyPair) => {
@@ -368,15 +368,15 @@ class App extends React.Component {
         let modal = document.getElementById("edit-song-modal");
         modal.classList.remove("is-visible");
     }
-    // showDeleteSongModal=()=> {
-    //     let modal = document.getElementById("delete-song-modal");
-    //     modal.classList.add("is-visible");
-    // }
-    // // THIS FUNCTION IS FOR HIDING THE MODAL
-    // hideDeleteSongModal = ()=> {
-    //     let modal = document.getElementById("delete-song-modal");
-    //     modal.classList.remove("is-visible");
-    // }
+    showDeleteSongModal=()=> {
+        let modal = document.getElementById("delete-song-modal");
+        modal.classList.add("is-visible");
+    }
+    // THIS FUNCTION IS FOR HIDING THE MODAL
+    hideDeleteSongModal = ()=> {
+        let modal = document.getElementById("delete-song-modal");
+        modal.classList.remove("is-visible");
+    }
 
     keydownHandler = (event) => {
         if(event.keyCode === 90 && (event.ctrlKey||event.metaKey)){
@@ -444,11 +444,11 @@ class App extends React.Component {
                     deleteListCallback={this.deleteMarkedList}
                 
                 />
-                {/* <DeleteSongModal
+                <DeleteSongModal
                     hideDeleteSongModalCallback={this.hideDeleteSongModal}
                     SongNameMarkedForDeletion={this.state.SongNameMarkedForDeletion}
                     deleteSongCallback = {this.addDeleteSongTransaction}
-                /> */}
+                />
                 <EditSongModal
                 hideEditSongModalCallback = {this.hideEditSongModal}
                 editSongCallback = {this.addEditSongTransaction}
