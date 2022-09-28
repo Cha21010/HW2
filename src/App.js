@@ -246,10 +246,10 @@ class App extends React.Component {
         let transaction = new MoveSong_Transaction(this, start, end);
         this.tps.addTransaction(transaction);
     }
-    // addAddSongTransaction = ()=>{
-    //     let transaction = new AddSong_Transaction(this);
-    //     this.tps.addTransaction(transaction);
-    // }
+    addAddSongTransaction = ()=>{
+        let transaction = new AddSong_Transaction(this);
+        this.tps.addTransaction(transaction);
+    }
     addDeleteSongTransaction = () =>{
         let transaction  = new DeleteSong_Transaction(this,this.state.SongIndexMarkedForDeletion,this.state.currentList.songs[this.state.SongIndexMarkedForDeletion]);
         this.tps.addTransaction(transaction);
@@ -428,7 +428,7 @@ class App extends React.Component {
                     undoCallback={this.undo}
                     redoCallback={this.redo}
                     closeCallback={this.closeCurrentList}
-                    // addSongCallback = {this.addAddSongTransaction}
+                    addSongCallback = {this.addAddSongTransaction}
                 />
                 <PlaylistCards
                     currentList={this.state.currentList}
